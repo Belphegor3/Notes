@@ -156,12 +156,12 @@ Index finaux    : 4 0 2 1 3
 **On reitere l operation jusqu a ce qu on ait parcouru tous les bits.**  
 **On veut donc maintenant cibler les "dizaines" donc on va bitshift de 1 a chaque fois**  
 
-	5 a pour index final 4  
-	4 vaut 100 en binaire  
-	4 >> 1 & 1 = ?  
-    4 >> 1 = 2  
-    2 & 1 <=> 10 & 01 = 00 = 0  
-0 signifie qu on push_b....  
+Maintenant Stack.a[0] = 5 qui a pour index final 4  
+        4 vaut 100 en binaire  
+        4 >> 1 & 1 = ?  
+        4 >> 1 = 2  
+        2 & 1 <=> 10 & 01 = 00 = 0  
+        0 signifie qu on push_b....  
 
 On compare donc le deuxieme bit le plus a droite de tous les nombres du tableau.  
 Puis on le fera avec le troisieme bit le plus a droite qui s avere etre le bit le plus a gauche puisqu on a que 5 nombres dans le tableau et qu on a donc un index final max de 4 qui contient 3 bits.  
