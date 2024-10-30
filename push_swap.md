@@ -21,9 +21,9 @@ Ca fait valider a 84% mais rapidement et ca fait voir le bitshifting/les operati
 
 ### Explication illustre des index finaux
 
-Stack.a		: 5 2 1 4 3	Stack.b	:  
-Index 		: 0 1 2 3 4	Stack.b :  
-Index finaux: 4 1 0 3 2	Stack.b :  
+Stack.a		: 5 2 1 4 3	     Stack.b :  
+Index 		: 0 1 2 3 4	     Stack.b :  
+Index finaux: 4 1 0 3 2	     Stack.b :  
 
 Concretement maintenant, on va devoir utiliser des operations binaires ([operations_binaires](#operations-binaires)) et du bitshifting ([bitshifting](#bitshifting)) avec les index finaux pour tout trier.
 
@@ -86,9 +86,9 @@ Mais par exemple si on devait trier un tableau contenant 19 valeurs, on aurait d
 
 Revenons a l exemple du debut :  
 
-Stack.a         : 5 2 1 4 3     Stack.b :  
-Index           : 0 1 2 3 4     Stack.b :  
-Index finaux    : 4 1 0 3 2     Stack.b :  
+Stack.a         : 5 2 1 4 3      Stack.b :  
+Index           : 0 1 2 3 4      Stack.b :  
+Index finaux    : 4 1 0 3 2      Stack.b :  
 
 On va devoir comparer chaque bit de chaque nombre (enfin premier bit de tous les nombres puis deuxieme bit de tous les nombres...)  
 Donc premierement on va comparer tous les bits les plus a droite donc on bitshift de 0 et on compare la valeur avec 1 avec un &.  
@@ -108,7 +108,7 @@ Maintenant Stack.a[0] = 2 qui a pour index final 1 (en effet l index final est f
 		1 >> 0 & 1 = 1  
         1 >> 0 = 1  => 1 & 1 = 1   
 		1 signifie qu on rotate_a  
-Stack.a         : 1 4 3 2    Stack.b : 5  
+Stack.a         : 1 4 3 2     Stack.b : 5  
 Index           : 0 1 2 3  
 Index finaux    : 0 3 2 1  
 
