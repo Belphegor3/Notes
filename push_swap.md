@@ -98,7 +98,7 @@ Exemples :	Stack.a[0] = 5 qui a pour index final 4
 		4 vaut 100 en binaire  
 		4 >> 0 & 1 = 0	(pourquoi 0? ne pas oublier qu on compare chaque bit 1 a 1)  
         4 >> 0 = 4  => 4 & 1 <=> 100 & 001 = 001 = 0  
-		0 signifie qu on push_b
+		0 signifie qu on push_b  
 Stack.a         : 2 1 4 3     Stack.b : 5  
 Index           : 0 1 2 3  
 Index finaux    : 1 0 3 2  
@@ -162,5 +162,9 @@ Index finaux    : 4 0 2 1 3
     4 >> 1 = 2  
     2 & 1 <=> 10 & 01 = 00 = 0  
 0 signifie qu on push_b....  
+
+On compare donc le deuxieme bit le plus a droite de tous les nombres du tableau.  
+Puis on le fera avec le troisieme bit le plus a droite qui s avere etre le bit le plus a gauche puisqu on a que 5 nombres dans le tableau et qu on a donc un index final max de 4 qui contient 3 bits.  
+Mais si on avait 19 nombres dans le tableau on aurait donc du repeter cette boucle 5 fois.  
 
 Vous n etes pas convaincu ? Finissez l algo sur papier ! Le faire sur papier montre que c est pas opti, il faut bien aller jusqu au bout de l algo mais il est tres simple a transcrire en code qui ne fait que quelques lignes!
