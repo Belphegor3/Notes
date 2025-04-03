@@ -105,7 +105,7 @@ Il faut donc iterer sur tous les philos en verifiant que le temps entre 2 repas 
 
 Je vous vois venir avec toutes les protections partout mais ce n est pas possible avec ce qu on nous autorise.  
 En revanche, le sujet precise bien que la simulation s arrete a la mort d un philo donc si j ai un **time_to_die** a 410ms et un **time_to_eat** a 2 000 000ms on doit bien mourir a au moins 410 et max a 420ms et on revient immediatement au prompt, on attend pas 1 999 590ms avant de revenir au prompt.  
-Pour cela au lieu de faire directement des **usleep(2000000)**[^1], on va faire une fonction qui va faire pleins de **usleep** jusqu a atteindre les 2 000 000 auquel cas, on pourra bel et bien verifier si on a un mort a chaque mini **usleep** et arreter la simulation pendant ces fameuses 2s.
+Pour cela au lieu de faire directement des **usleep(2000000)**[^1], on va faire une fonction qui va faire pleins de **usleep** jusqu a atteindre les 2 000 000 auquel cas, on pourra bel et bien verifier si on a un mort a chaque mini **usleep** et arreter la simulation pendant ces fameuses 1999.6s.
 
 ## Conclusion
 
@@ -187,4 +187,4 @@ int main() {
 
 4. **La prise de fourchettes doit se faire differements entre tous les philosophers pour eviter des problemes de valgrind/fsanitize. Le plus simple etant de faire en sorte que tous les philos paires prennent la fourchette de droite puis celle de gauche et les philos impaires prennent la fourchette de gauche puis celle de droite ou l inverse evidemment hein. Je ne parle pas du nombre de philos ici, qu on ait 4 philos ou 5 philos ne changent rien, les paires prennent d puis g et les impaires prennent g puis d.**
 
-[^1]: a noter que la fonction usleep est en microsecondes alors que sleep est en secondes et donc **usleep(1 000 000) == sleep(1)**
+[^1]: a noter que la fonction usleep est en microsecondes (µs) alors que sleep est en secondes (s) mais dans le sujet on ne parle qu en microsecondes (ms) et **1s == 1 000ms == 1 000 000µs**.
