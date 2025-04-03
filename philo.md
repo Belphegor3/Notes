@@ -18,10 +18,10 @@ Il vous faudra aussi rajouter un flag de compilation que ca compile: *-pthread*
 
 ## Que sont les thread?
 
-Pour definir la notion de thread, imaginons que nous sommes dans un restaurant (qui represente le main), qui comporte une cuisine (un processus).  
-Si on n a qu un seul employe qui fait tout, tout sera donc tres lent et on n aura aucun client.  
-Pour palier a ce probleme, on veut plusieurs employes (qui representent donc les thread), un pour les commades, un pour la cuisine et un qui sert.  
-Evidemment on peut avoir bien plus d employes, mais c pour bien illustre que juste avec ces 3 la, on va beaucoup plus vite et ce sont eux les thread parce qu ils travaillent de concert.  
+Pour definir la notion de thread, imaginons que nous sommes dans un restaurant, qui comporte une cuisine (un processus).  
+Si on n a qu un seul employe (qui serait donc le main) qui fait tout, tout sera donc tres lent et on n aura aucun client.  
+Pour palier a ce probleme, on veut plusieurs employes (qui representent donc les thread, tout en gardant un manager qui gere tout qui represente le main), un pour les commades, un pour la cuisine et un qui sert.  
+Evidemment on peut avoir bien plus d employes, mais c pour bien illustre que, juste avec ces 3 la, on va beaucoup plus vite et ce sont eux les thread parce qu ils travaillent en meme temps.  
 
 ## Les problemes associes aux threads?
 
