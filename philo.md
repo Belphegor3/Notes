@@ -2,6 +2,7 @@
 
 Le projet philosophers veut que nous fassions manger simultanement des philosophes autour d une table ronde.  
 Le probleme etant cette notion de "simultaner", qui va donc introduire la notion de **thread**.  
+Il vous faudra aussi rajouter un flag de compilation que ca compile: *-pthread*  
 
 ## Table des matieres
 
