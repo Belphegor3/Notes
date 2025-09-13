@@ -107,6 +107,41 @@ Je vous vois venir avec toutes les protections partout mais ce n est pas possibl
 En revanche, le sujet precise bien que la simulation s arrete a la mort d un philo donc si j ai un **time_to_die** a 410ms et un **time_to_eat** a 2 000 000ms on doit bien mourir a au moins 410 et max a 420ms et on revient immediatement au prompt, on attend pas 1 999 590ms avant de revenir au prompt.  
 Pour cela au lieu de faire directement des **usleep(2000000)**[^1], on va faire une fonction qui va faire pleins de **usleep** jusqu a atteindre les 2 000 000 auquel cas, on pourra bel et bien verifier si on a un mort a chaque mini **usleep** et arreter la simulation pendant ces fameuses 1999.6s.
 
+## Comment detecter des data race
+
+C est tres simple a detecter, il faut compiler de la facon suivante:
+```bash
+valgrind --tool=helgrind ./philo 4 41000 200 200 2
+```
+
+Vous pouvez aussi test avec 5 philos.  
+Le temps de 41000 est super trop grand mais c juste pour voir l affichage malgres valgrind qui ralentit de fou.  
+**Attention a ne surtout pas lancer valgrind et fsanitize (avec fsanitize=thread) en meme temps, cela ferait crash l ordi**  
+
+Quand vous avez le resultat, si erreurs il y a, si data race il y a, ils sont tres simple a corriger (veillez a bien compiler avec un '-g' pour voir le numero des lignes) puisque vous voyez ecrit "Possible data race"[^2] avec l arborescence menant a une variable et en dessous "This conflicts with a previous write" menant a une deuxieme variable.  
+Cela signifie juste qu une des deux n est pas protegee donc entouree de lock/unlock.  
+En d autres termes vous essayez de lire une variable que vous etes en meme temps entrain de changer ou vous essayez de changer une variable plusieurs fois en meme temps.
+
+![alt text](image.png)
+
+
+## Comment detecter un deadlock
+
+**Conseil: n en ayez pas!!**  
+Ca fait comme une boucle inf, ton programme ne fait rien puisqu il attend.  
+Pareil, on utilise:
+```bash
+valgrind --tool=helgrind programme
+```  
+J utilise ici le programme de la section [Conclusion](#conclusion) juste en dessous
+Ici on va avoir des gros pavets incomprehensibles commme suit:  
+![alt text](image-1.png)
+![alt text](image-2.png)  
+**Ce qui nous interesse ici c est une ligne en particulier qui donne au moins le nom de la fonction, ensuite a vous de vous demerder pour etre meilleur.**  
+
+
+![alt text](image-3.png)  
+![alt text](image-4.png)
 ## Conclusion
 
 Rien de bien complique mais necessite beaucoup de rigueur pour eviter des problemes du genre:
@@ -187,4 +222,5 @@ int main() {
 
 4. **La prise de fourchettes doit se faire differements entre tous les philosophers pour eviter des problemes de valgrind/fsanitize. Le plus simple etant de faire en sorte que tous les philos paires prennent la fourchette de droite puis celle de gauche et les philos impaires prennent la fourchette de gauche puis celle de droite ou l inverse evidemment hein. Je ne parle pas du nombre de philos ici, qu on ait 4 philos ou 5 philos ne changent rien, les paires prennent d puis g et les impaires prennent g puis d.**
 
-[^1]: a noter que la fonction usleep est en microsecondes (µs) alors que sleep est en secondes (s) mais dans le sujet on ne parle qu en microsecondes (ms) et **1s == 1 000ms == 1 000 000µs**.
+[^1]: a noter que la fonction usleep est en microsecondes (µs) alors que sleep est en secondes (s) mais dans le sujet on ne parle qu en microsecondes (ms) et **1s == 1 000ms == 1 000 000µs**.  
+[^2]: Pas de debat sur le mot "possible", comme avec les leaks si c est "possible", ca veut dire qu on peut le corriger.
